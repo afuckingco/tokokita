@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= typeof title !== 'undefined' ? title : 'Admin - TokoKita' %></title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="admin-body">
+  <aside class="admin-sidebar">
+    <h2>🛒 TokoKita</h2>
+    <nav>
+      <a href="/admin">Dashboard</a>
+      <a href="/admin/products">Produk</a>
+      <a href="/admin/orders">Pesanan</a>
+      <a href="/" target="_blank">Lihat Toko</a>
+    </nav>
+    <form action="/admin/logout" method="POST">
+      <%- include('../partials/csrf') %>
+      <button type="submit" class="btn-logout">Logout</button>
+    </form>
+  </aside>
+  <main class="admin-content">

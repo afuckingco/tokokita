@@ -1,0 +1,105 @@
+<%- include('_layout_top', { title: 'Kelola Produk' }) %>
+
+<h1>Kelola Produk</h1>
+
+<details class="add-box">
+  <summary>+ Tambah Produk Baru</summary>
+  <form action="/admin/products/add" method="POST" enctype="multipart/form-data" class="admin-form">
+    <%- include('../partials/csrf') %>
+    <label>Nama Produk
+      <input type="text" name="name" required />
+    </label>
+    <label>Harga (Rp)
+      <input type="number" name="price" min="0" required />
+    </label>
+    <label>Stok
+      <input type="number" name="stock" min="0" required />
+    </label>
+    <label>Kategori
+      <select name="category_id">
+        <option value="">- Tanpa kategori -</option>
+        <% categories.forEach(c => { %>
+          <option value="<%= c.id %>"><%= c.name %></option>
+        <% }) %>
+      </select>
+    </label>
+    <label>Gambar Produk
+      <input type="file" name="image" accept="image/*" />
+    </label>
+    <button type="submit" class="btn-primary">Simpan Produk</button>
+  </form>
+</details>
+
+<details class="add-box">
+  <summary>+ Tambah Kategori Baru</summary>
+  <form action="/admin/categories/add" method="POST" class="admin-form-inline">
+    <%- include('../partials/csrf') %>
+    <input type="text" name="name" placeholder="Nama kategori" required />
+    <button type="submit" class="btn-primary">Tambah</button>
+  </form>
+</details>
+
+<table class="admin-table">
+  <thead>
+    <tr>
+      <th>Gambar</th>
+      <th>Nama</th>
+      <th>Kategori</th>
+      <th>Harga</th>
+      <th>Stok</th>
+      <th>Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% products.forEach(p => { %>
+      <tr>
+        <td>
+          <% if (p.image) { %>
+            <img src="<%= p.image %>" class="thumb" />
+          <% } else { %>
+            📦
+          <% } %>
+        </td>
+        <td><%= p.name %></td>
+        <td><%= p.category_name || '-' %></td>
+        <td><%= formatRupiah(p.price) %></td>
+        <td><%= p.stock %></td>
+        <td class="actions">
+          <details>
+            <summary class="btn-edit">Edit</summary>
+            <form action="/admin/products/edit/<%= p.id %>" method="POST" enctype="multipart/form-data" class="admin-form">
+              <%- include('../partials/csrf') %>
+              <label>Nama
+                <input type="text" name="name" value="<%= p.name %>" required />
+              </label>
+              <label>Harga
+                <input type="number" name="price" value="<%= p.price %>" min="0" required />
+              </label>
+              <label>Stok
+                <input type="number" name="stock" value="<%= p.stock %>" min="0" required />
+              </label>
+              <label>Kategori
+                <select name="category_id">
+                  <option value="">- Tanpa kategori -</option>
+                  <% categories.forEach(c => { %>
+                    <option value="<%= c.id %>" <%= p.category_id === c.id ? 'selected' : '' %>><%= c.name %></option>
+                  <% }) %>
+                </select>
+              </label>
+              <label>Ganti Gambar
+                <input type="file" name="image" accept="image/*" />
+              </label>
+              <button type="submit" class="btn-primary">Update</button>
+            </form>
+          </details>
+          <form action="/admin/products/delete/<%= p.id %>" method="POST" onsubmit="return confirm('Hapus produk ini?')">
+            <%- include('../partials/csrf') %>
+            <button type="submit" class="btn-danger">Hapus</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('_layout_bottom') %>

@@ -1,0 +1,25 @@
+<%- include('_layout_top', { title: 'Dashboard Admin' }) %>
+
+<h1>Dashboard</h1>
+<p class="welcome">Selamat datang, <strong><%= adminUsername %></strong></p>
+
+<div class="stat-grid">
+  <div class="stat-card">
+    <p class="stat-label">Total Produk</p>
+    <p class="stat-value"><%= productCount %></p>
+  </div>
+  <div class="stat-card">
+    <p class="stat-label">Total Pesanan</p>
+    <p class="stat-value"><%= orderCount %></p>
+  </div>
+  <div class="stat-card">
+    <p class="stat-label">Pesanan Pending</p>
+    <p class="stat-value"><%= pendingCount %></p>
+  </div>
+  <div class="stat-card">
+    <p class="stat-label">Total Pendapatan</p>
+    <p class="stat-value"><%= formatRupiah(revenue) %></p>
+  </div>
+</div>
+
+<%- include('_layout_bottom') %>

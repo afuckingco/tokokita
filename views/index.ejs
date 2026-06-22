@@ -1,0 +1,60 @@
+<%- include('partials/header', { title: 'TokoKita - Belanja Online', cartCount: cartCount }) %>
+
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">Belanja harian, diantar hari ini</span>
+    <h1>Isi keranjangmu,<br />kami yang antar.</h1>
+    <p>Sembako, minuman, snack, sampai kebutuhan rumah — pilih dari rak kami,
+      checkout dalam semenit.</p>
+    <a href="#produk" class="btn-primary btn-hero">Mulai Belanja ↓</a>
+  </div>
+  <div id="hero-3d" class="hero-3d" aria-hidden="true"></div>
+</section>
+
+<section id="produk">
+  <div class="categories">
+    <a href="/" class="cat-pill <%= !activeCategory ? 'active' : '' %>">Semua</a>
+    <% categories.forEach(c => { %>
+      <a href="/?category=<%= c.id %>" class="cat-pill <%= activeCategory === c.id ? 'active' : '' %>"><%= c.name %></a>
+    <% }) %>
+  </div>
+
+  <div class="product-grid">
+    <% if (products.length === 0) { %>
+      <p>Belum ada produk di kategori ini.</p>
+    <% } %>
+    <% products.forEach(p => { %>
+      <div class="product-card">
+        <div class="tilt-inner">
+          <div class="tilt-glow"></div>
+          <div class="product-img">
+            <% if (p.image) { %>
+              <img src="<%= p.image %>" alt="<%= p.name %>" />
+            <% } else { %>
+              <div class="img-placeholder">📦</div>
+            <% } %>
+          </div>
+          <div class="product-info">
+            <h3><%= p.name %></h3>
+            <p class="price"><%= formatRupiah(p.price) %></p>
+            <p class="stock <%= p.stock <= 0 ? 'out' : '' %>">
+              <%= p.stock > 0 ? 'Stok: ' + p.stock : 'Stok habis' %>
+            </p>
+            <% if (p.stock > 0) { %>
+              <form action="/cart/add" method="POST" class="add-form">
+                <%- include('partials/csrf') %>
+                <input type="hidden" name="productId" value="<%= p.id %>" />
+                <input type="number" name="qty" value="1" min="1" max="<%= p.stock %>" />
+                <button type="submit">+ Keranjang</button>
+              </form>
+            <% } else { %>
+              <button disabled class="btn-disabled">Stok Habis</button>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

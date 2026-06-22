@@ -1,0 +1,11 @@
+<%- include('partials/header', { title: 'Pesanan Berhasil - TokoKita' }) %>
+
+<div class="success-box">
+  <h2>✅ Pesanan Berhasil Dibuat!</h2>
+  <p>Nomor Pesanan: <strong>#<%= orderId %></strong></p>
+  <p>Total: <strong><%= formatRupiah(total) %></strong></p>
+  <p>Terima kasih sudah berbelanja. Pesanan kamu akan segera diproses.</p>
+  <a href="/" class="btn-primary">Kembali Belanja</a>
+</div>
+
+<%- include('partials/footer') %>

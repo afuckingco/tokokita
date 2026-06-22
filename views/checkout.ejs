@@ -1,0 +1,35 @@
+<%- include('partials/header', { title: 'Checkout - TokoKita' }) %>
+
+<h2>Checkout</h2>
+
+<% if (error) { %>
+  <div class="alert-error"><%= error %></div>
+<% } %>
+
+<div class="checkout-layout">
+  <form action="/checkout" method="POST" class="checkout-form">
+    <%- include('partials/csrf') %>
+    <label>Nama Penerima
+      <input type="text" name="customer_name" required />
+    </label>
+    <label>No. HP
+      <input type="text" name="customer_phone" required />
+    </label>
+    <label>Alamat Lengkap
+      <textarea name="customer_address" rows="3" required></textarea>
+    </label>
+    <button type="submit" class="btn-primary">Buat Pesanan</button>
+  </form>
+
+  <div class="checkout-summary">
+    <h3>Ringkasan Pesanan</h3>
+    <ul>
+      <% items.forEach(item => { %>
+        <li><%= item.name %> x<%= item.qty %> — <%= formatRupiah(item.subtotal) %></li>
+      <% }) %>
+    </ul>
+    <p class="cart-total"><strong>Total: <%= formatRupiah(total) %></strong></p>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

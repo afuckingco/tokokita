@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Runtime data — auto-generated
+db/toko.sqlite
+db/toko.sqlite-journal
+logs/
+*.log
+
+# User uploads (keep .gitkeep so folder exists)
+public/uploads/*
+!public/uploads/.gitkeep
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

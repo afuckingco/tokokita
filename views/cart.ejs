@@ -1,0 +1,51 @@
+<%- include('partials/header', { title: 'Keranjang - TokoKita' }) %>
+
+<h2>Keranjang Belanja</h2>
+
+<% if (items.length === 0) { %>
+  <p>Keranjang kamu masih kosong. <a href="/">Mulai belanja</a></p>
+<% } else { %>
+  <table class="cart-table">
+    <thead>
+      <tr>
+        <th>Produk</th>
+        <th>Harga</th>
+        <th>Jumlah</th>
+        <th>Subtotal</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% items.forEach(item => { %>
+        <tr>
+          <td><%= item.name %></td>
+          <td><%= formatRupiah(item.price) %></td>
+          <td>
+            <form action="/cart/update" method="POST" class="qty-form">
+              <%- include('partials/csrf') %>
+              <input type="hidden" name="productId" value="<%= item.id %>" />
+              <input type="number" name="qty" value="<%= item.qty %>" min="1" max="<%= item.stock %>" />
+              <button type="submit">Update</button>
+            </form>
+          </td>
+          <td><%= formatRupiah(item.subtotal) %></td>
+          <td>
+            <form action="/cart/remove" method="POST">
+              <%- include('partials/csrf') %>
+              <input type="hidden" name="productId" value="<%= item.id %>" />
+              <button type="submit" class="btn-danger">Hapus</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <div class="cart-total">
+    <strong>Total: <%= formatRupiah(total) %></strong>
+  </div>
+
+  <a href="/checkout" class="btn-primary">Lanjut ke Checkout</a>
+<% } %>
+
+<%- include('partials/footer') %>

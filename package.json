@@ -1,0 +1,36 @@
+{
+  "name": "tokokita",
+  "version": "1.0.0",
+  "description": "TokoKita — A simple but security-hardened Node.js + Express online shop with product catalog, cart, checkout, and admin panel. Portfolio project demonstrating end-to-end web security: helmet, CSRF, rate limiting, file-upload validation, session hardening, and atomic stock management.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "ejs",
+    "sqlite",
+    "shop",
+    "ecommerce",
+    "security",
+    "portfolio"
+  ],
+  "author": "Afiq Andico Pangimpian",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.5.2",
+    "express-session": "^1.19.0",
+    "helmet": "^8.2.0",
+    "multer": "^2.2.0",
+    "sql.js": "^1.14.1"
+  }
+}

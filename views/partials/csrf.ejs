@@ -1,0 +1,6 @@
+<!--
+  CSRF token partial — include di setiap form POST.
+  Token berasal dari res.locals.csrfToken (di-set di server.js middleware).
+  Output: hidden input yang akan divalidasi oleh csrfProtection middleware.
+-->
+<input type="hidden" name="_csrf" value="<%= csrfToken %>">
