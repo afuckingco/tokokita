@@ -4,6 +4,8 @@
   "description": "TokoKita — A simple but security-hardened Node.js + Express online shop with product catalog, cart, checkout, and admin panel. Portfolio project demonstrating end-to-end web security: helmet, CSRF, rate limiting, file-upload validation, session hardening, and atomic stock management.",
   "main": "server.js",
   "scripts": {
+    "lint": "eslint .",
+    "audit": "npm audit --audit-level=high",
     "start": "node server.js",
     "dev": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"

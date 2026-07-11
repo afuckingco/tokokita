@@ -1,26 +1,31 @@
-# Dependencies
+# Node.js & npm
 node_modules/
+npm-debug.log*
 
-# Runtime data — auto-generated
-db/toko.sqlite
-db/toko.sqlite-journal
+# Dependency directories
+package-lock.json
+
+# Build output
+/dist
+/build
+
+# Logs
 logs/
 *.log
 
-# User uploads (keep .gitkeep so folder exists)
-public/uploads/*
-!public/uploads/.gitkeep
-
-# Environment files
-.env
-.env.local
-.env.*.local
-
-# Editor / OS
+# OS files
 .DS_Store
 Thumbs.db
-.vscode/
+
+# Env files
+.env
+.env.*
+
+# IDE/editor
 .idea/
-*.swp
-*.swo
-*~
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Uploaded images (runtime data)
+public/uploads/
