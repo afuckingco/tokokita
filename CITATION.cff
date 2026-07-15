@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - family-names: "Pangimpian"
+    given-names: "Afiq Andico"
+    orcid: "https://orcid.org/0009-0002-1750-9551"
+title: "tokokita"
+abstract: ""
+version: 1.0.0
+date-released: "2026-07-15"
+repository-code: "https://github.com/afuckingco/tokokita"
+url: "https://github.com/afuckingco/tokokita"
+license: MIT
