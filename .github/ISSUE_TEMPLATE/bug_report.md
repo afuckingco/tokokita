@@ -1,37 +1,26 @@
 ---
 name: Bug Report
-about: Report something that is not working as expected
+about: Something is broken
 title: "[BUG] "
 labels: bug
+assignees: ''
 ---
 
-## Summary
+**Description**
+Clear description of the bug.
 
-> A clear, concise description of the bug.
-
-## Steps to Reproduce
-
+**Steps to Reproduce**
 1.
 2.
 3.
 
-> For monorepos: which subproject is affected?
+**Expected Behavior**
+What should happen.
 
-## Expected Behavior
+**Environment**
+- OS: 
+- Python: 
+- Version: 
 
-> What you expected to happen.
-
-## Actual Behavior
-
-> What actually happened. Include error messages if any.
-
-## Environment
-
-| Item | Value |
-|---|---|
-| OS | |
-| Language/runtime version | |
-| Repo / subproject | |
-| Commit / version | |
-
-## Additional Context
+**Screenshots / Logs**
+If applicable.
